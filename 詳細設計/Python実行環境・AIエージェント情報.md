@@ -2,8 +2,8 @@
 title: Python実行・AIエージェント情報
 type: タスク
 description: PythonによるAIを用いた処理の前提となる、Python実行環境およびAIエージェント（Antigravity）へのアクセス情報についてまとめる。
-created: 2026-07-30
-updated: 2026-08-03
+created: 2026-08-03T01:09:01+09:00
+updated: 2026-08-04T14:17:39+09:00
 ---
 # 目的
 PythonによるAIを用いた処理の前提となる、Python実行環境の情報をまとめる。
@@ -16,7 +16,6 @@ PythonによるAIを用いた処理の前提となる、Python実行環境の情
 
 仮想環境の作成： `python -m venv .venv --copies`
 ## Pythonライブラリ (`requirements.txt`)
-
 ```
 # HTTP API通信（Antigravity API等）
 requests>=2.32.0
@@ -45,7 +44,6 @@ python-dateutil>=2.9.0
 # 環境変数管理（APIキー等）
 python-dotenv>=1.0.0
 ```
-
 # Obsidianコミュニティプラグイン
 Pythonスクリプトとは別に、一部タスクはObsidianのコミュニティプラグインに依存する。
 ## Gemini Scribe
@@ -61,12 +59,19 @@ Pythonスクリプトとは独立した経路であり、本システムのAI問
                 - `プロジェクトタイプ名.yaml`（`project_type`ごとの規約値。ファイル名はモジュールと同じ`project_type_mapping`マッピングで解決する）
             - `tasks/`
                 - `個別タスク名.yaml`（タスク別設定）
+            - `schemas/`
+                - `common_frontmatter.yaml`（将来の共通Frontmatterスキーマ外部化先）
+                - `project_types/`（将来のproject_type別スキーマ外部化先）
         - `Python/`
             - `.venv/`
             - `taskscripts/`
                 - `個別タスク名.py` (タスクごとの処理)
             - `modules/`
-                - `モジュール.py` （汎用モジュール）
+                - `config_loader.py`（設定読込・マージ）
+                - `run_context.py`（実行モード・対象日・AI使用可否）
+                - `file_transaction.py`（競合検出・複数ファイル更新）
+                - `frontmatter_validator.py`（Frontmatter検証）
+                - `モジュール.py` （その他の汎用モジュール）
                 - `project_types/`
                     - `プロジェクトタイプ名.py`（各project_type固有のモジュール。ファイル名は半角英数とし、`config.yaml`の`project_type_mapping`で日本語のproject_typeと対応付ける）
             - `snapshots/`（編集前のスナップショット保存領域）
@@ -79,6 +84,6 @@ Pythonスクリプトとは独立した経路であり、本システムのAI問
             - `PSスクリプト名.ps1` (タスクスケジューラに登録するPowershell）
 # AIエージェント
 Antigravity エージェントを利用する。
-アクセスするためのAntigravity APIキーの詳細は、[[Utilities/Documents/詳細設計/共通設定・モジュール仕様#.env|共通設定・モジュール仕様]]を参照せよ。
+アクセスするためのAntigravity APIキーの詳細は、[[スポット/Pythion開発/（旧）共通設定・モジュール仕様#.env|共通設定・モジュール仕様]]を参照せよ。
 # 設定ファイル
-Pythonの各種設定は、[[Utilities/Documents/詳細設計/共通設定・モジュール仕様#設定ファイル（`config/`以下）|共通設定・モジュール仕様]]を参照せよ。
+Pythonの各種設定は、[[Utilities/Documents/詳細設計/共通設定仕様|共通設定仕様]]を参照せよ。
