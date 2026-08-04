@@ -3,7 +3,7 @@ title: Python実行・AIエージェント情報
 type: タスク
 description: PythonによるAIを用いた処理の前提となる、Python実行環境およびAIエージェント（Antigravity）へのアクセス情報についてまとめる。
 created: 2026-08-03T01:09:01+09:00
-updated: 2026-08-04T14:17:39+09:00
+updated: 2026-08-04T21:04:29+09:00
 ---
 # 目的
 PythonによるAIを用いた処理の前提となる、Python実行環境の情報をまとめる。
